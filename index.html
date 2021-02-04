@@ -3,7 +3,21 @@
  <h1 style="color:red">Hi Welcome to lameboredgeneious.</h1>
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="/__/firebase/8.2.5/firebase-app.js"></script>
+<script src="/__/firebase/8.2.5/firebase-app.js">function saveToFirebase(email) {
+    var emailObject = {
+        email: email
+    };
+
+    firebase.database().ref('subscription-entries').push().set(emailObject)
+        .then(function(snapshot) {
+            success(); // some success method
+        }, function(error) {
+            console.log('error' + error);
+            error(); // some error method
+        });
+}
+
+saveToFirebase(email);</script>
 
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
